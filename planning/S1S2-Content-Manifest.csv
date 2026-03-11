@@ -1,0 +1,51 @@
+species_id,name,resonance_class,rarity,trigger_type,trigger_summary,phase_target,mvp_surface,art_plan,audio_plan,availability,notes
+first_pulse,First Pulse,s1,common,first_checkin,first ever check-in,phase_2_mvp,playable_mvp,final_mvp_required,placeholder_mvp_then_polish,free,teaches first reward loop
+dawn_moth,Dawn Moth,s1,common,time_of_day,first morning check-in,phase_2_mvp,playable_mvp,final_mvp_required,placeholder_mvp_then_polish,free,reinforces morning habit
+kindling_spore,Kindling Spore,s1,common,streak,3-day streak,phase_2_mvp,playable_mvp,final_mvp_required,placeholder_mvp_then_polish,free,early streak reward
+surge_beetle,Surge Beetle,s1,common,activity_log,first exercise logged,phase_2_mvp,playable_mvp,final_mvp_required,placeholder_mvp_then_polish,free,activity teaching trigger
+flare_minnow,Flare Minnow,s1,common,metric_threshold,HR above 100,phase_2_mvp,playable_mvp,final_mvp_required,placeholder_mvp_then_polish,free,shows dynamic HR trigger
+ember_slug,Ember Slug,s1,common,time_series,5 consecutive morning check-ins,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,morning streak species
+ignition_worm,Ignition Worm,s1,common,context_log,first caffeine logged,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,optional context metric
+spark_flea,Spark Flea,s1,common,frequency,3 check-ins in one day,phase_2_mvp,playable_mvp,final_mvp_required,placeholder_mvp_then_polish,free,teaches multiple daily check-ins
+rush_hare,Rush Hare,s1,common,activity_duration,first activity over 30 minutes,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,progressive activity reward
+blaze_polyp,Blaze Polyp,s1,common,total_count,10 total check-ins,phase_2_mvp,playable_mvp,final_mvp_required,placeholder_mvp_then_polish,free,reliable first-week unlock
+kindle_fox,Kindle Fox,s1,common,streak,5-day streak,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,mid-first-week streak reward
+pump_toad,Pump Toad,s1,common,combo_log,first BP and HR same day,phase_2_mvp,playable_mvp,final_mvp_required,placeholder_mvp_then_polish,free,teaches combined logging
+flicker_bird,Flicker Bird,s1,common,activity_hr,HR recorded during exercise,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,requires linked activity and HR
+crackle_crab,Crackle Crab,s1,common,mood_log,first energized mood log,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,teaches mood logging
+torch_anemone,Torch Anemone,s1,common,total_count,20 total check-ins,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,longer early retention reward
+drift_medusa,Drift Medusa,s2,common,sleep_log,first sleep log,phase_2_mvp,playable_mvp,final_mvp_required,placeholder_mvp_then_polish,free,teaches restorative loop
+settle_frog,Settle Frog,s2,common,time_of_day,first evening check-in,phase_2_mvp,playable_mvp,final_mvp_required,placeholder_mvp_then_polish,free,reinforces evening habit
+echo_mite,Echo Mite,s2,common,day_cycle,first morning and evening pair,phase_2_mvp,playable_mvp,final_mvp_required,placeholder_mvp_then_polish,free,teaches full-day rhythm
+hush_snail,Hush Snail,s2,common,metric_threshold,resting HR below 75,phase_2_mvp,playable_mvp,final_mvp_required,placeholder_mvp_then_polish,free,resting metric trigger
+still_moth,Still Moth,s2,common,time_series,3 consecutive evening check-ins,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,evening consistency reward
+lull_worm,Lull Worm,s2,common,calendar,first weekend check-in,phase_2_mvp,playable_mvp,final_mvp_required,placeholder_mvp_then_polish,free,calendar-based trigger
+calm_seed,Calm Seed,s2,common,total_count,7 total sleep logs,phase_2_mvp,playable_mvp,final_mvp_required,placeholder_mvp_then_polish,free,sleep consistency reward
+rest_pup,Rest Pup,s2,common,time_series,5 consecutive sleep logs,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,sleep streak reward
+deep_fish,Deep Fish,s2,common,late_night,first post-midnight check-in,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,late-night variant behavior
+quiet_beetle,Quiet Beetle,s2,common,mood_frequency,calm mood logged 3 times,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,mood consistency reward
+night_bloom,Night Bloom,s2,common,total_count,10 evening check-ins,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,late habit reward
+sigh_jellyfish,Sigh Jellyfish,s2,common,guided_breathing,first guided breathing completed,phase_2_mvp,playable_mvp,final_mvp_required,placeholder_mvp_then_polish,free,requires guided breathing in MVP
+slumber_bear_cub,Slumber Bear Cub,s2,common,time_series,7 days with sleep logged,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,longer sleep habit reward
+fade_coral,Fade Coral,s2,common,total_count,30 total check-ins,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,late common retention reward
+dusk_firefly,Dusk Firefly,s2,common,streak,10-day streak,phase_2_mvp,playable_mvp,final_mvp_required,placeholder_mvp_then_polish,free,strong week-two reward
+balance_bug,Balance Bug,harmonic,common,full_data_day,first day with all vital types logged,phase_2_mvp,playable_mvp,final_mvp_required,placeholder_mvp_then_polish,free,teaches full-day loop
+rhythm_seed,Rhythm Seed,harmonic,common,full_data_day,3 full-data days,phase_2_mvp,playable_mvp,final_mvp_required,placeholder_mvp_then_polish,free,reward for repeated completeness
+cycle_worm,Cycle Worm,harmonic,common,week_complete,first full week completed,phase_2_mvp,playable_mvp,final_mvp_required,placeholder_mvp_then_polish,free,first milestone for retention
+sync_fish,Sync Fish,harmonic,common,time_series,both morning and evening check-ins for 5 days,phase_2_mvp,playable_mvp,final_mvp_required,placeholder_mvp_then_polish,free,bridges day-cycle habit
+tempo_cricket,Tempo Cricket,harmonic,common,streak,15-day streak,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,late common streak reward
+solar_fox,Solar Fox,s1,uncommon,streak,14-day streak,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,first uncommon streak prize
+blitz_raptor,Blitz Raptor,s1,uncommon,activity_hr_repeat,HR above 120 during exercise 5 times,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,repeat high-intensity trigger
+thunder_beetle,Thunder Beetle,s1,uncommon,activity_count,20 activity logs,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,activity depth reward
+forge_salamander,Forge Salamander,s1,uncommon,total_count,50 total check-ins,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,late uncommon milestone
+pulse_hawk,Pulse Hawk,s1,uncommon,trend,HR improving trend over 14 days,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,trend-detection showcase
+lunar_moth,Lunar Moth,s2,uncommon,time_series,14 consecutive sleep logs,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,first uncommon sleep streak
+glacier_tortoise,Glacier Tortoise,s2,uncommon,metric_frequency,resting HR below 65 recorded 5 times,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,resting metric depth reward
+mist_octopus,Mist Octopus,s2,uncommon,combo_count,50 total check-ins with sleep data,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,sleep plus volume reward
+frost_fern,Frost Fern,s2,uncommon,trend,HRV improving trend over 14 days,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,HRV trend showcase
+twilight_deer,Twilight Deer,s2,uncommon,time_series,20 consecutive evening check-ins,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,late evening mastery reward
+mirror_fish,Mirror Fish,harmonic,uncommon,full_data_streak,all vital types logged for 7 consecutive days,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,deep completeness reward
+pendulum_moth,Pendulum Moth,harmonic,uncommon,listening_post,first Listening Post reached,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,requires Listening Posts
+phase_spider,Phase Spider,harmonic,uncommon,streak,21-day streak,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,late uncommon streak reward
+tide_crab,Tide Crab,harmonic,uncommon,total_count,100 total check-ins,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,long-horizon volume reward
+weave_bird,Weave Bird,harmonic,uncommon,healthy_range_combo,BP and HR both in healthy range for 7 days,phase_4_ship,silhouette_in_mvp,phase_4_final_required,phase_4_audio_required,free,combined-range reward

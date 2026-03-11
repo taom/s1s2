@@ -1,0 +1,217 @@
+# Dependencies
+node_modules/
+.pnp/
+.pnp.js
+
+# Expo
+.expo/
+dist/
+web-build/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+
+# Native builds
+ios/
+android/
+*.ipa
+*.apk
+*.aab
+
+# Metro
+.metro-health-check*
+
+# Debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# macOS
+.DS_Store
+*.pem
+
+# Local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# TypeScript
+*.tsbuildinfo
+
+# Testing
+coverage/
+.nyc_output/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Logs
+logs/
+*.log
+
+# Build artifacts
+build/
+.cache/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Supabase
+.supabase/
+
+# Secrets - NEVER commit these
+secrets/
+*.pem
+*.key
+credentials.json
+service-account.json
+
+# Asset source files (keep exports only)
+assets/src/
+*.psd
+*.ai
+*.sketch
+*.fig
+
+# Audio source files (keep exports only)
+audio/src/
+*.wav
+*.aiff
+# Keep compressed audio
+!*.mp3
+!*.m4a
+!*.ogg
+
+# Documentation drafts
+docs/drafts/
+*.draft.md
+
+# Analysis
+.analyze/
+
+# Bundle artifacts
+*.jsbundle
+
+# Expo EAS
+.eas/
+eas.json
+
+# CodePush
+codepush.json
+
+# Fastlane
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+# Bitrise
+bitrise.yml
+.bitrise.secrets.yml
+
+# CircleCI
+.circleci/config.yml
+
+# GitHub Actions workflows are kept
+# .github/workflows/
+
+# Sentry
+.sentryclirc
+
+# Bundle visualizer
+stats.html
+
+# React Native Debugger
+rn-cli.config.js
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle (library builds)
+.modern/
+
+# Serverless directories
+.serverless/
+
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
+
+# TernJS port file
+.tern-port
+
+# Stores that might contain sensitive data
+stores/sensitive/
+
+# Yarn
+.yarn-integrity
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# PNPM
+.pnpm-debug.log
+.pnpm-store/
+
+# Turborepo
+.turbo/
+
+# Nx
+.nx/cache
+
+# Verdaccio (local npm registry)
+verdaccio/
+
+# Local development databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Backup files
+*.backup
+*.bak
+
+# Compressed archives (usually from exports)
+*.zip
+*.tar.gz
+*.rar
+
+# Keep planning documents
+!planning/
+
+# Allow specific config files
+!.eslintrc.*
+!.prettierrc.*
+!.babelrc.*
+!tsconfig.json
+!app.json
+!package.json
