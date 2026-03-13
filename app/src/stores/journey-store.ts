@@ -55,7 +55,7 @@ function computeTodayFuel(scans: ScanResult[]): FuelLog {
   return fuel;
 }
 
-function getTotalFuel(fuel: FuelLog): number {
+export function getTotalFuel(fuel: FuelLog): number {
   return fuel.heartRateCheckins + fuel.bpLogs + fuel.sleepLogs +
          fuel.moodLogs + fuel.activityLogs + fuel.streakBonus;
 }

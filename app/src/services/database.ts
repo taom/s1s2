@@ -194,6 +194,17 @@ export async function getLatestScanByType(
   return row ? rowToScanResult(row as Record<string, unknown>) : null;
 }
 
+export async function getYesterdayLatestByType(
+  metricType: MetricType
+): Promise<ScanResult | null> {
+  const d = getDatabase();
+  const row = await d.getFirstAsync(
+    "SELECT * FROM scan_results WHERE metric_type = ? AND date(created_at) = date('now', '-1 day') ORDER BY created_at DESC LIMIT 1",
+    metricType
+  );
+  return row ? rowToScanResult(row as Record<string, unknown>) : null;
+}
+
 export async function getTodayScanResults(): Promise<ScanResult[]> {
   const d = getDatabase();
   const rows = await d.getAllAsync(
