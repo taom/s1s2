@@ -1,0 +1,12 @@
+/* S1S2 Global Styles */
+:root {
+  --color-s1: #E85D5D;
+  --color-s2: #5D8DE8;
+  --color-space-deep: #0A0E1A;
+  --color-text-primary: #E8ECF4;
+}
+
+body {
+  background-color: var(--color-space-deep);
+  color: var(--color-text-primary);
+}

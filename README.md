@@ -45,37 +45,26 @@ S1S2 is a heart health app disguised as a space exploration game. Your real hear
 
 ```
 s1s2/
-├── app/                    # Expo Router app directory
-│   ├── (auth)/            # Authentication flows
-│   ├── (tabs)/            # Main app tabs
-│   │   ├── bridge/        # Home screen (ship cockpit)
-│   │   ├── galaxy/        # Galaxy map
-│   │   ├── chamber/       # Resonance Chamber (creatures)
-│   │   ├── signal/        # Signal Deck (insights)
-│   │   └── log/           # Profile & settings
-│   └── onboarding/        # First-time user experience
-├── components/            # Reusable UI components
-│   ├── ship/             # Ship-related components
-│   ├── creatures/        # Creature display components
-│   ├── galaxy/           # Galaxy map components
-│   ├── audio/            # Audio/music components
-│   └── health/           # Health tracking components
-├── lib/                   # Core libraries and utilities
-│   ├── supabase/         # Supabase client and helpers
-│   ├── health/           # Health data processing
-│   ├── audio/            # Audio engine
-│   ├── galaxy/           # Galaxy generation
-│   └── creatures/        # Creature logic
-├── hooks/                 # Custom React hooks
-├── stores/               # State management (Zustand)
-├── types/                # TypeScript type definitions
-├── constants/            # Design tokens, colors, themes
-├── assets/               # Static assets
-│   ├── images/           # Images and illustrations
-│   ├── audio/            # Audio files
-│   └── fonts/            # Custom fonts
-├── planning/             # Project planning documents
-└── docs/                 # Additional documentation
+├── app/                        # Expo SDK 55 app
+│   └── src/
+│       ├── app/                # Expo Router file-based routing
+│       │   ├── (onboarding)/   # 4-screen cinematic intro + setup
+│       │   ├── (tabs)/         # Main ship interior rooms
+│       │   │   ├── bridge.tsx  # Home (cockpit + vitals instruments)
+│       │   │   ├── chamber.tsx # Resonance Chamber (creature gallery)
+│       │   │   ├── galaxy.tsx  # Navigation Console (galaxy map)
+│       │   │   ├── signals.tsx # Signal Deck (insights & history)
+│       │   │   └── log.tsx     # The Log (profile & settings)
+│       │   ├── checkin.tsx     # Check-in flow (full-screen modal)
+│       │   └── creature-discovery.tsx
+│       ├── components/
+│       │   └── ship/           # Ship instrument components
+│       ├── constants/          # Design tokens, creature data
+│       ├── services/           # Supabase client, local DB
+│       ├── stores/             # Zustand state (user, journey, creatures, music)
+│       └── types/              # TypeScript definitions
+├── planning/                   # Execution planning documents
+└── docs/                       # Development documentation
 ```
 
 ## Development Phases
@@ -125,7 +114,7 @@ Android launch, wearables, social features, content expansion.
 ```bash
 # Clone the repository
 git clone https://github.com/taom/s1s2.git
-cd s1s2
+cd s1s2/app
 
 # Install dependencies
 npm install

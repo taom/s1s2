@@ -1,0 +1,51 @@
+{
+  "expo": {
+    "name": "S1S2",
+    "slug": "s1s2",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "s1s2",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#0A0E1A",
+    "ios": {
+      "bundleIdentifier": "com.taoftware.s1s2",
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSCameraUsageDescription": "S1S2 uses the camera to measure your heart rate by detecting blood flow through your fingertip.",
+        "NSHealthShareUsageDescription": "S1S2 reads your heart rate and health data to fuel your journey through space.",
+        "NSHealthUpdateUsageDescription": "S1S2 can save heart rate measurements to Apple Health."
+      }
+    },
+    "android": {
+      "package": "com.taoftware.s1s2",
+      "adaptiveIcon": {
+        "backgroundColor": "#0A0E1A"
+      }
+    },
+    "web": {
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#0A0E1A",
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 120
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": ""
+      }
+    }
+  }
+}
