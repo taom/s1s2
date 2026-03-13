@@ -36,7 +36,8 @@
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 120
         }
-      ]
+      ],
+      ["./plugins/withNdkVersion", "28.2.13676358"]
     ],
     "experiments": {
       "typedRoutes": true,
