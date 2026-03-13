@@ -42,6 +42,11 @@ export interface ScanResult {
   unit: string;
   confidence: number;
   source: VitalSource;
+  deviceModel?: string;
+  osVersion?: string;
+  ambientLight?: 'bright' | 'normal' | 'low';
+  motionDetected?: boolean;
+  rawSignalQuality?: number;
   createdAt: string;
 }
 
@@ -77,6 +82,7 @@ export interface CreatureSpecies {
 export interface CreatureDiscovery {
   id: string;
   speciesId: string;
+  discoveryScanId?: string;
   variantHue: number;
   variantPatternDensity: number;
   variantGlowIntensity: number;
@@ -121,6 +127,7 @@ export interface Planet {
 export interface JourneyProgress {
   galaxySeed: string;
   currentSystemIndex: number;
+  currentSystemName?: string;
   totalSystemsVisited: number;
   totalFuelEarned: number;
   totalXpEarned: number;
@@ -164,6 +171,20 @@ export interface UserProfile {
   xp: number;
   currentStreak: number;
   longestStreak: number;
+  onboardingCompleted: boolean;
+}
+
+// ─── Preferences (SQLite singleton) ────────────
+export interface UserPreferences {
+  captainName: string | null;
+  shipName: string;
+  reminderEnabled: boolean;
+  reminderTime: string;
+  quietHoursStart: string;
+  quietHoursEnd: string;
+  hapticsEnabled: boolean;
+  reduceMotion: boolean;
+  theme: 'auto' | 'light' | 'dark';
   onboardingCompleted: boolean;
 }
 

@@ -37,7 +37,11 @@
           "imageWidth": 120
         }
       ],
-      ["./plugins/withNdkVersion", "28.2.13676358"]
+      [
+        "./plugins/withNdkVersion",
+        "28.2.13676358"
+      ],
+      "expo-sqlite"
     ],
     "experiments": {
       "typedRoutes": true,

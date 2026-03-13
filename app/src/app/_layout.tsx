@@ -1,15 +1,31 @@
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
+import { initDatabase } from '@/services/database';
+import { hydrateStores } from '@/services/hydrate';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
+  const [isReady, setIsReady] = useState(false);
+
   useEffect(() => {
-    // TODO: check onboarding state, load fonts, initialize DB
-    SplashScreen.hideAsync();
+    async function bootstrap() {
+      try {
+        await initDatabase();
+        await hydrateStores();
+      } catch (e) {
+        console.error('[App] Bootstrap failed:', e);
+      } finally {
+        setIsReady(true);
+        SplashScreen.hideAsync();
+      }
+    }
+    bootstrap();
   }, []);
+
+  if (!isReady) return null;
 
   return (
     <>
