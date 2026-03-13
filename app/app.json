@@ -41,7 +41,8 @@
         "./plugins/withNdkVersion",
         "28.2.13676358"
       ],
-      "expo-sqlite"
+      "expo-sqlite",
+      "react-native-vision-camera"
     ],
     "experiments": {
       "typedRoutes": true,

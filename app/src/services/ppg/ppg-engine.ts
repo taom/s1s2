@@ -41,6 +41,7 @@ export class PPGEngine {
   private allPeakTimestamps: number[] = [];
   private calibrated = false;
   private highConfidenceSince: number | null = null;
+  private lastPeakCount = 0; // track new peaks for per-beat callbacks
 
   constructor(callbacks: PPGCallbacks, config?: Partial<PPGEngineConfig>) {
     this.config = { ...DEFAULT_CONFIG, ...config };
@@ -80,6 +81,7 @@ export class PPGEngine {
     this.allPeakTimestamps = [];
     this.calibrated = false;
     this.highConfidenceSince = null;
+    this.lastPeakCount = 0;
   }
 
   addFrame(imageData: Uint8Array, width: number, height: number): void {
@@ -158,10 +160,33 @@ export class PPGEngine {
 
     if (this.calibrated) {
       this.callbacks.onHRUpdate(Math.round(instantHR), confidence);
-      this.callbacks.onBeatDetected(Math.round(instantHR));
+
+      // Fire onBeatDetected once per NEW peak (not per processing cycle)
+      const newPeakCount = peaks.length - this.lastPeakCount;
+      for (let i = 0; i < newPeakCount; i++) {
+        this.callbacks.onBeatDetected(Math.round(instantHR));
+      }
+      this.lastPeakCount = peaks.length;
 
       const quality = this.confidenceToQuality(confidence);
       this.callbacks.onQualityChange(quality);
+
+      // Early exit: confidence > threshold sustained for 5+ seconds after earlyExitMinMs
+      if (elapsedMs >= this.config.earlyExitMinMs && confidence >= this.config.earlyExitConfidence) {
+        if (this.highConfidenceSince === null) {
+          this.highConfidenceSince = elapsedMs;
+        } else if (elapsedMs - this.highConfidenceSince >= 5000) {
+          // Sustained high confidence for 5 seconds — signal early completion
+          const result = this.computeResult();
+          if (result) {
+            this.running = false;
+            this.callbacks.onMeasurementComplete(result);
+            return;
+          }
+        }
+      } else {
+        this.highConfidenceSince = null;
+      }
     }
 
     // Track all peak timestamps for final result
