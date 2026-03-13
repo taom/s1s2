@@ -101,7 +101,7 @@ export default function BridgeScreen() {
         </View>
 
         {/* ─── Fuel Status ─── */}
-        <FuelBar currentFuel={0} maxFuel={5} />
+        <FuelBar fuel={{ heartRateCheckins: 0, bpLogs: 0, sleepLogs: 0, moodLogs: 0, activityLogs: 0, streakBonus: 0 }} />
 
         {/* ─── Action Bar ─── */}
         <View style={styles.actionBar}>
