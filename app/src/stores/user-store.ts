@@ -1,59 +1,69 @@
-/**
- * User Store (zustand)
- *
- * Manages user profile state, onboarding status, and session data.
- * Ephemeral UI state — persisted data lives in SQLite.
- *
- * TODO: wire up to SQLite and Supabase after deps installed
- */
-
-// import { create } from 'zustand';
-
-import type { ShipClass, UserProfile } from '@/types';
+import { create } from 'zustand';
+import type { UserProfile, UserPreferences, JourneyProgress } from '@/types';
+import { upsertUserPreferences } from '@/services/database';
 
 export interface UserState {
-  // Profile
   profile: UserProfile | null;
+  preferences: UserPreferences | null;
   isOnboarded: boolean;
 
-  // Actions
-  setProfile: (profile: UserProfile) => void;
   setCaptainName: (name: string) => void;
   setShipName: (name: string) => void;
   completeOnboarding: () => void;
+  hydrate: (prefs: UserPreferences | null, journey: JourneyProgress | null) => void;
 }
 
-// Placeholder until zustand is installed
-export const useUserStore = (() => {
-  let state: UserState = {
-    profile: null,
-    isOnboarded: false,
-    setProfile: () => {},
-    setCaptainName: () => {},
-    setShipName: () => {},
-    completeOnboarding: () => {},
-  };
-  return () => state;
-})();
-
-/*
-// Real implementation (uncomment when zustand is installed):
 export const useUserStore = create<UserState>((set) => ({
   profile: null,
+  preferences: null,
   isOnboarded: false,
 
-  setProfile: (profile) => set({ profile }),
+  hydrate: (prefs, journey) => {
+    if (!prefs) {
+      set({ profile: null, preferences: null, isOnboarded: false });
+      return;
+    }
 
-  setCaptainName: (name) =>
+    const profile: UserProfile = {
+      id: 'local-captain',
+      displayName: prefs.captainName ?? 'Captain',
+      shipName: prefs.shipName,
+      shipClass: journey?.shipClass ?? 'pod',
+      xp: journey?.totalXpEarned ?? 0,
+      currentStreak: journey?.currentStreak ?? 0,
+      longestStreak: journey?.longestStreak ?? 0,
+      onboardingCompleted: prefs.onboardingCompleted,
+    };
+
+    set({
+      profile,
+      preferences: prefs,
+      isOnboarded: prefs.onboardingCompleted,
+    });
+  },
+
+  setCaptainName: (name) => {
     set((state) => ({
       profile: state.profile ? { ...state.profile, displayName: name } : null,
-    })),
+      preferences: state.preferences ? { ...state.preferences, captainName: name } : null,
+    }));
+    upsertUserPreferences({ captainName: name });
+  },
 
-  setShipName: (name) =>
+  setShipName: (name) => {
     set((state) => ({
       profile: state.profile ? { ...state.profile, shipName: name } : null,
-    })),
+      preferences: state.preferences ? { ...state.preferences, shipName: name } : null,
+    }));
+    upsertUserPreferences({ shipName: name });
+  },
 
-  completeOnboarding: () => set({ isOnboarded: true }),
+  completeOnboarding: () => {
+    set((state) => ({
+      isOnboarded: true,
+      profile: state.profile ? { ...state.profile, onboardingCompleted: true } : null,
+      preferences: state.preferences ? { ...state.preferences, onboardingCompleted: true } : null,
+    }));
+    upsertUserPreferences({ onboardingCompleted: true });
+  },
 }));
-*/
