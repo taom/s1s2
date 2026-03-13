@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 import { Colors, Spacing, BorderRadius, FontSize } from '@/constants/theme';
 import { generateCommentary, getTimeOfDay } from '@/services/ship-ai';
+import { useJourneyStore } from '@/stores/journey-store';
 import type { MeasurementResult } from '@/services/ppg/types';
 
 interface ResultDisplayProps {
@@ -81,13 +82,15 @@ function DeltaBadge({ currentHR, previousHR }: DeltaBadgeProps) {
 }
 
 export function ResultDisplay({ result, previousHR, onContinue, onRetry }: ResultDisplayProps) {
+  const progress = useJourneyStore((s) => s.progress);
+
   const commentary = generateCommentary({
     heartRate: result.heartRate,
     confidence: result.confidence,
     previousHR,
     timeOfDay: getTimeOfDay(),
-    currentStreak: 0,
-    totalCheckIns: 0,
+    currentStreak: progress?.currentStreak ?? 0,
+    totalCheckIns: progress?.totalSystemsVisited ?? 0,
     isFirstEver: previousHR === null,
   });
 

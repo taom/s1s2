@@ -7,6 +7,7 @@ type StatusLevel = 'optimal' | 'normal' | 'elevated' | 'high' | 'low';
 interface VitalReading {
   value: number;
   delta: number | null;
+  createdAt?: string;
 }
 
 interface VitalsDelta {
@@ -66,6 +67,7 @@ async function fetchVital(metricType: MetricType): Promise<VitalReading | undefi
   return {
     value: latest.value,
     delta: yesterday ? latest.value - yesterday.value : null,
+    createdAt: latest.createdAt,
   };
 }
 
@@ -101,8 +103,7 @@ export function useLatestVitals(): UseLatestVitalsResult {
       if (spo2) newStatus.spo2 = classifySpO2(spo2.value);
       setStatus(newStatus);
 
-      const latestHR = await getLatestScanByType('heart_rate');
-      setLastCheckInAt(latestHR?.createdAt ?? null);
+      setLastCheckInAt(hr?.createdAt ?? null);
     } finally {
       setIsLoading(false);
     }

@@ -27,6 +27,15 @@ const EMPTY_FUEL: FuelLog = {
   streakBonus: 0,
 };
 
+const FUEL_CAPS: Record<keyof FuelLog, number> = {
+  heartRateCheckins: 3,
+  bpLogs: 1,
+  sleepLogs: 0.5,
+  moodLogs: 0.25,
+  activityLogs: 0.25,
+  streakBonus: 3,
+};
+
 function computeTodayFuel(scans: ScanResult[]): FuelLog {
   const fuel = { ...EMPTY_FUEL };
   for (const scan of scans) {
@@ -93,9 +102,11 @@ export const useJourneyStore = create<JourneyState>((set, get) => ({
 
   addFuel: (amount, source) => {
     set((state) => {
-      const todayFuel = { ...state.todayFuel, [source]: state.todayFuel[source] + amount };
+      const capped = Math.min(state.todayFuel[source] + amount, FUEL_CAPS[source]);
+      const actualAdded = capped - state.todayFuel[source];
+      const todayFuel = { ...state.todayFuel, [source]: capped };
       const progress = state.progress
-        ? { ...state.progress, totalFuelEarned: state.progress.totalFuelEarned + amount }
+        ? { ...state.progress, totalFuelEarned: state.progress.totalFuelEarned + actualAdded }
         : null;
       return { todayFuel, progress };
     });

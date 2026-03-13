@@ -1,6 +1,6 @@
 import type { ScanResult, MetricType, VitalSource } from '@/types';
 import type { MeasurementResult } from '@/services/ppg/types';
-import { insertScanResult } from '@/services/database';
+import { getDatabase, insertScanResult } from '@/services/database';
 import { useJourneyStore } from '@/stores/journey-store';
 import { ACTIVITY_TYPES, type ActivityType } from '@/constants/activity-types';
 
@@ -93,12 +93,20 @@ export async function saveCheckIn(
     fuelEarned += 1.0;
   }
 
-  // Persist all scans
-  for (const scan of scans) {
-    await insertScanResult(scan);
+  // Persist all scans in a single transaction
+  const d = getDatabase();
+  await d.execAsync('BEGIN');
+  try {
+    for (const scan of scans) {
+      await insertScanResult(scan);
+    }
+    await d.execAsync('COMMIT');
+  } catch (err) {
+    await d.execAsync('ROLLBACK');
+    throw err;
   }
 
-  // Update journey store fuel
+  // Update journey store fuel (only after successful DB commit)
   const store = useJourneyStore.getState();
   store.addFuel(1.0, 'heartRateCheckins');
   if (optionalLogs.mood != null) store.addFuel(0.25, 'moodLogs');

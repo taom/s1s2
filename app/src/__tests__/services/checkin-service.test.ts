@@ -6,6 +6,7 @@ import { useJourneyStore } from '@/stores/journey-store';
 // Mock database
 jest.mock('@/services/database', () => ({
   insertScanResult: jest.fn(),
+  getDatabase: jest.fn(() => ({ execAsync: jest.fn() })),
 }));
 
 // Mock journey store

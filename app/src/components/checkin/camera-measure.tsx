@@ -76,6 +76,7 @@ export function CameraMeasure({ onComplete, onCancel }: CameraMeasureProps) {
   const [elapsedMs, setElapsedMs] = useState(0);
   const [canEarlyExit, setCanEarlyExit] = useState(false);
   const [measurementStarted, setMeasurementStarted] = useState(false);
+  const [timedOutNoResult, setTimedOutNoResult] = useState(false);
 
   // Refs
   const engineRef = useRef<PPGEngine | null>(null);
@@ -140,6 +141,8 @@ export function CameraMeasure({ onComplete, onCancel }: CameraMeasureProps) {
         const result = engine.stop();
         if (result) {
           handleComplete(result);
+        } else {
+          setTimedOutNoResult(true);
         }
       }
     }, 200);
@@ -297,6 +300,75 @@ export function CameraMeasure({ onComplete, onCancel }: CameraMeasureProps) {
   // ------------------------------------------------------------------
   // Progress
   // ------------------------------------------------------------------
+
+  // ------------------------------------------------------------------
+  // Timed out with no result
+  // ------------------------------------------------------------------
+
+  if (timedOutNoResult) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.statusText}>Could not detect heartbeat</Text>
+        <Text style={styles.timerText}>
+          Make sure your finger covers the camera and flash
+        </Text>
+        <TouchableOpacity
+          style={styles.earlyExitButton}
+          onPress={() => {
+            setTimedOutNoResult(false);
+            setElapsedMs(0);
+            setCurrentBPM(0);
+            setConfidence(0);
+            setQuality('calibrating');
+            setCanEarlyExit(false);
+            completedRef.current = false;
+            const engine = new PPGEngine(
+              engineRef.current
+                ? // re-use same callbacks shape
+                  {
+                    onFingerDetected: (detected: boolean) => {
+                      setFingerDetected(detected);
+                      if (!detected) setFingerLost(true);
+                      else setFingerLost(false);
+                    },
+                    onBeatDetected: () => {},
+                    onHRUpdate: (hr: number, conf: number) => {
+                      setCurrentBPM(hr);
+                      setConfidence(conf);
+                    },
+                    onQualityChange: (q: QualityLevel) => setQuality(q),
+                    onMeasurementComplete: handleComplete,
+                  }
+                : {
+                    onFingerDetected: () => {},
+                    onBeatDetected: () => {},
+                    onHRUpdate: () => {},
+                    onQualityChange: () => {},
+                    onMeasurementComplete: handleComplete,
+                  },
+            );
+            engineRef.current = engine;
+            engine.start();
+            startTimeRef.current = Date.now();
+            timerRef.current = setInterval(() => {
+              const elapsed = Date.now() - startTimeRef.current;
+              setElapsedMs(elapsed);
+              if (elapsed >= MEASUREMENT_DURATION_MS && !completedRef.current) {
+                const result = engine.stop();
+                if (result) handleComplete(result);
+                else setTimedOutNoResult(true);
+              }
+            }, 200);
+          }}
+        >
+          <Text style={styles.earlyExitText}>Try again</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.cancelButton} onPress={onCancel}>
+          <Text style={styles.cancelText}>Cancel</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
 
   const progressPct = Math.min(elapsedMs / MEASUREMENT_DURATION_MS, 1) * 100;
 
